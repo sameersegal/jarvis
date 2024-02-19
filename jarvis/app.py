@@ -40,17 +40,22 @@ with gr.Blocks() as demo:
         chatbot = gr.Chatbot(height=600)
 
     with gr.Row():
-        text = gr.Textbox(lines=2, 
-                          placeholder="Ask me anything!", 
-                          scale=9
+        text = gr.Textbox(lines=2,
+                          placeholder="Ask me anything!",
+                          scale=9,
                           show_label=False,
                           container=False)
         submit = gr.Button("Submit", variant="primary")
 
-    text.submit(add_user_message, [chatbot, text], [chatbot, text], queue=False).then(
+    text_fn = text.submit(add_user_message, [chatbot, text], [chatbot, text], queue=False).then(
         add_chatbot_message, chatbot, chatbot)
-    text.then(lambda: gr.Textbox(interactive=True),
+    text_fn.then(lambda: gr.Textbox(interactive=True),
                  None, [text], queue=False)
+
+    submit_fn = submit.click(add_user_message, [chatbot, text], [chatbot, text], queue=False).then(
+        add_chatbot_message, chatbot, chatbot)
+    submit_fn.then(lambda: gr.Textbox(interactive=True),
+                   None, [text], queue=False)
 
     demo.queue()
     demo.launch()
