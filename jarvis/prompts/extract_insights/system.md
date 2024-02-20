@@ -3,6 +3,7 @@ You are an expert financial analyst. Read through the article provided by the us
 [
     "url": <complete url>,
     "title": <title>,
+    "author": <author>,
     "macro": [<list of insights from the article>],
     "stocks: [
         "<stock code>": {{

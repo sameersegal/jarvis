@@ -16,6 +16,13 @@ def um(content):
     }
 
 
+def am(content):
+    return {
+        "role": "assistant",
+        "content": content
+    }
+
+
 class BasePrompt(object):
     _cache = {}
 
@@ -46,7 +53,7 @@ class BasePrompt(object):
             messages = self.create_prompt(**kwargs)
             kwargs['messages'] = messages
 
-        if len(messages) == 0:
+        if len(kwargs['messages']) == 0:
             return ''
 
         for chunk in completion(**kwargs):

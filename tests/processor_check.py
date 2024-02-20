@@ -13,5 +13,5 @@ class TestProcessorCheck(TestCase):
 
     def test_files(self):
         process_file(raw_dir("fool-nvda.md"))
-        # process_file(raw_dir("bi-nvda.md"))
-        # process_file(raw_dir("io-nvda.md"))
+        process_file(raw_dir("bi-nvda.md"))
+        process_file(raw_dir("io-nvda.md"))
